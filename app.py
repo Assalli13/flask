@@ -8,7 +8,8 @@ import pickle
 
 app = Flask(__name__)
 
-@app.route('/predictByClientId', methods=['POST'])
+#@app.route('/predictByClientId', methods=['POST'])
+@app.route("/")
 def predictByClientId():
     file1 = open('best_model_B_S.pkl', 'rb')
     model = pickle.load(file1)
@@ -53,4 +54,4 @@ def predictByClientId():
         return ('No model here to use')
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run()
