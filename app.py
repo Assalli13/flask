@@ -52,6 +52,14 @@ def predictByClientId():
     else:
         print ('Problem loading the model')
         return ('No model here to use')
+@app.route('/')
+def index():
+    return "Welcome to the API"
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(app.root_path,
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 #if __name__ == '__main__':
     #app.run()
