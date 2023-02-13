@@ -53,5 +53,5 @@ def predictByClientId():
         print ('Problem loading the model')
         return ('No model here to use')
 
-if __name__ == '__main__':
-    app.run()
+#if __name__ == '__main__':
+    #app.run()
