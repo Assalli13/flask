@@ -6,3 +6,4 @@ jinja2==2.11.2
 MarkupSafe==1.1.0
 gunicorn==20.1.0
 itsdangerous==2.0.1
+Werkzeug==2.0.3
