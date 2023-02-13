@@ -63,7 +63,7 @@ def favicon():
 
 if __name__ == '__main__':
     st.title("Mon application Flask")
-    #write()
+    st.write(main())
     st.write("Mon application Flask est maintenant compatible avec Streamlit!")
     st.write("Essayez d'interagir avec les widgets ci-dessous.")
-    app.run()
+    #app.run()
