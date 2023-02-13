@@ -66,4 +66,4 @@ if __name__ == '__main__':
     #write()
     st.write("Mon application Flask est maintenant compatible avec Streamlit!")
     st.write("Essayez d'interagir avec les widgets ci-dessous.")
-   # app.run()
+    app.run()
