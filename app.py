@@ -1,19 +1,19 @@
-from os import system
-from flask import Flask, request, jsonify, send_from_directory
+import streamlit as st
+from flask import Flask, request, jsonify
 import traceback
 import pandas as pd
 import numpy as np
 import pickle
-import streamlit as st
 
 app = Flask(__name__)
 
-#@app.route('/predictByClientId', methods=['POST'])
-@app.route("/")
+# load the saved model
+file1 = open('best_model_B_S.pkl', 'rb')
+model = pickle.load(file1)
+file1.close()
+
+@app.route('/predictByClientId', methods=['POST'])
 def predictByClientId():
-    file1 = open('best_model_B_S.pkl', 'rb')
-    model = pickle.load(file1)
-    file1.close()
     if model:
         try:
             json_ = request.json
@@ -25,9 +25,10 @@ def predictByClientId():
             y_proba = model.predict_proba(client)
             #client['TARGET'] = y_pred
             #print the predicted value and predicted probability
-            
-            print("Predicted value: ", y_pred[0])
-            print("Predicted probability: ", y_proba[0][0])
+
+            # Display the results in Streamlit
+            st.write("Predicted value: ", y_pred[0])
+            st.write("Predicted probability: ", y_proba[0][0])
 
             #print the predicted value and predicted probability
 
@@ -37,33 +38,19 @@ def predictByClientId():
             sum_of_importance = model.feature_importances_.sum()
             feature_importances['importance'] = model.feature_importances_/sum_of_importance
 
-            # Use the to_json method on the DataFrame to convert it to json
-            feature_importances_json = feature_importances.to_json(orient='records')
-            # Display the feature importances
-            #st.write(feature_importances)
-            
+            # Display the feature importances in Streamlit
+            st.write(feature_importances)
+
             return jsonify({'prediction': y_pred[0],
-                'prediction_proba':y_proba[0][1],
-                'feature_importances': feature_importances_json})
-   
+                'prediction_proba':y_proba[0][1]})
 
         except:
             return jsonify({'trace': traceback.format_exc()})
     else:
         print ('Problem loading the model')
         return ('No model here to use')
-@app.route('/')
-def index():
-    return "Welcome to the API"
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(app.root_path,
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
-    st.title("Mon application Flask")
-    st.write(main())
-    st.write("Mon application Flask est maintenant compatible avec Streamlit!")
-    st.write("Essayez d'interagir avec les widgets ci-dessous.")
-    #app.run()
+    # Call the predictByClientId function when the button is clicked
+    if st.button('Predict'):
+        predictByClientId()
