@@ -4,7 +4,7 @@ import traceback
 import pandas as pd
 import numpy as np
 import pickle
-
+import streamlit as st
 
 app = Flask(__name__)
 
@@ -61,5 +61,9 @@ def favicon():
     return send_from_directory(app.root_path,
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
+    st.title("Mon application Flask")
+    write()
+    st.write("Mon application Flask est maintenant compatible avec Streamlit!")
+    st.write("Essayez d'interagir avec les widgets ci-dessous.")
    # app.run()
