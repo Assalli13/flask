@@ -1,1 +1,1 @@
-web: bash setup.sh && streamlit run test_api.py
+web: gunicorn test_api:app
