@@ -34,12 +34,8 @@ def predictByClientId():
     return jsonify(results)
 
 if __name__ == '__main__':
-    app.run()
-    #try:
-        #port = int(system.argv[1]) # This is for a command-line input
-    #except:
-        #port = 12345 # If you don't provide any port the port will be set to 12345
-
+    app.run(debug=True, host='0.0.0.0', port=3000)
+   
 
     
 
