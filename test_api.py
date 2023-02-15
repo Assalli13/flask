@@ -1,10 +1,11 @@
-import uvicorn
+#import uvicorn
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import pandas as pd
 import pickle
+import gunicorn
 
 app = FastAPI()
 #app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -61,4 +62,4 @@ def read_root():
     return html_content
 
 if __name__ == '__main__':
-    uvicorn.run(app)
+    gunicorn.run(app)
