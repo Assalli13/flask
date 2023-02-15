@@ -1,4 +1,4 @@
-#import uvicorn
+import uvicorn
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -61,5 +61,5 @@ def read_root():
     """
     return html_content
 
-if __name__ == '__main__':
-    uvicorn.run()
+#if __name__ == '__main__':
+   # uvicorn.run()
