@@ -61,5 +61,6 @@ def read_root():
     """
     return html_content
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
+    gunicorn.app.wsgiapp
    # uvicorn.run()
