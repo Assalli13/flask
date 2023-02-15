@@ -62,4 +62,4 @@ def read_root():
     return html_content
 
 if __name__ == '__main__':
-    gunicorn.run(app)
+    gunicorn.run()
